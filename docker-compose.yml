@@ -1,0 +1,35 @@
+version: "3"
+services:
+  database:
+    image: database
+    container_name: database
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    ports:
+      - 27017:27017
+  fulltextsearch:
+    image: fulltextsearch
+    container_name: fulltextsearch
+    build:
+      context: .
+      dockerfile: fulltextsearch/Dockerfile
+    ports:
+      - 9200:9200
+      - 9300:9300
+  web-backend:
+    image: web-backend
+    container_name: web-backend
+    build:
+      context: .
+      dockerfile: web-backend/Dockerfile
+    ports:
+      - 5050:5050
+  web-interface:
+    image: web-interface
+    container_name: web-interface
+    build:
+      context: .
+      dockerfile: web-interface/Dockerfile
+    ports:
+      - 3000:3000
